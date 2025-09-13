@@ -1,0 +1,46 @@
+service: euphoria-trading-backend
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    REDIS_URL: ${env:REDIS_URL}
+  apiGateway:
+    websocketApiName: euphoria-trading-ws-api
+    websocketApiRouteSelectionExpression: $request.body.action
+
+functions:
+  connect:
+    handler: handlers.connect
+    events:
+      - websocket:
+          route: $connect
+  
+  disconnect:
+    handler: handlers.disconnect
+    events:
+      - websocket:
+          route: $disconnect
+  
+  proportionalPayout:
+    handler: handlers.proportional_payout
+    events:
+      - websocket:
+          route: proportional_payout
+  
+  payoutMultiplier:
+    handler: handlers.payout_multiplier
+    events:
+      - websocket:
+          route: payout_multiplier
+
+plugins:
+  - serverless-python-requirements
+  - serverless-websockets-plugin
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    layer: true
