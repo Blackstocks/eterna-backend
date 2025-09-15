@@ -22,4 +22,3 @@ EXPOSE 8000
 
 # Run the application using the start script
 CMD ["./start.sh"]
-EOF < /dev/null
