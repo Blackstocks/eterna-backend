@@ -1,0 +1,17 @@
+{
+  "name": "eterna-backend",
+  "version": "1.0.0",
+  "description": "Eterna backend with Pyth Lazer price fetcher",
+  "main": "new.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node new.mjs"
+  },
+  "dependencies": {
+    "@pythnetwork/pyth-lazer-sdk": "^0.1.0",
+    "redis": "^4.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
