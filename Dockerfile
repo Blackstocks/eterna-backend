@@ -21,11 +21,11 @@ RUN npm install
 # Copy application code
 COPY . .
 
-# Make start script executable
-RUN chmod +x start.sh
+# Make scripts executable
+RUN chmod +x start_server.py
 
 # Expose the port
 EXPOSE 8000
 
-# Run the application using the start script
-CMD ["./start.sh"]
+# Run using Python script to handle PORT properly
+CMD ["python", "start_server.py"]
